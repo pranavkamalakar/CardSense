@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, CreditCard, Copy, CheckCircle, TrendingUp, Gift, Shield } from "lucide-react";
 import { GeminiService } from "@/services/geminiService";
-import anime from 'animejs';
+const anime = require('animejs');
 
 interface CardComparisonProps {
   userEmail: string;
