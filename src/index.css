@@ -9,12 +9,12 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Financial Services Design System - Light Theme (default) */
-    --background: 240 10% 98%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+  --background: 220 16% 94%; /* soft light gray */
+  --foreground: 220 16% 20%; /* gentle dark gray for text */
+  --card: 220 16% 98%; /* slightly lighter card */
+  --card-foreground: 220 16% 20%;
+  --popover: 220 16% 98%;
+  --popover-foreground: 220 16% 20%;
     --primary: 214 84% 56%;
     --primary-foreground: 0 0% 98%;
     --primary-glow: 217 91% 70%;
@@ -22,12 +22,12 @@ All colors MUST be HSL.
     --secondary-foreground: 0 0% 98%;
     --accent: 45 93% 47%;
     --accent-foreground: 224 71% 4%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+  --muted: 220 16% 90%; /* very light muted gray */
+  --muted-foreground: 220 10% 40%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 213 31% 91%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
+  --border: 220 10% 85%;
+  --input: 220 10% 85%;
     --ring: 214 84% 56%;
     --radius: 0.75rem;
     /* Financial gradients */
@@ -39,8 +39,8 @@ All colors MUST be HSL.
     --shadow-card-hover: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -2px hsl(0 0% 0% / 0.05);
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 240 10% 3.9%;
+  --sidebar-background: 220 16% 96%;
+  --sidebar-foreground: 220 16% 20%;
     --sidebar-primary: 214 84% 56%;
     --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 240 4.8% 95.9%;
