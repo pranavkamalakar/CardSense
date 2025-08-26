@@ -56,5 +56,5 @@ declare module 'animejs' {
     const random: (min: number, max: number) => number;
   }
 
-  export = anime;
+  export default anime;
 }
