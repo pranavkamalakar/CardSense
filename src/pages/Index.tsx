@@ -8,21 +8,10 @@ interface User {
 }
 
 const Index = () => {
-  const [user, setUser] = useState<User | null>(null);
-
-  const handleAuthSuccess = (userData: User) => {
-    setUser(userData);
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-  };
-
-  if (!user) {
-    return <AuthForm onAuthSuccess={handleAuthSuccess} />;
-  }
-
-  return <CardComparison userEmail={user.email} onLogout={handleLogout} />;
-};
-
-export default Index;
+export default function Index() {
+  return (
+    <div>
+      <CardComparison />
+    </div>
+  );
+}

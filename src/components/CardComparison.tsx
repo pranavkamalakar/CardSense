@@ -80,12 +80,67 @@ export const CardComparison = ({ userEmail, onLogout }: CardComparisonProps) => 
         description: "Please select both vendor and customer cards.",
         variant: "destructive",
       });
-      return;
+      return (
+        <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
+          <h1 className="text-3xl font-bold text-center mt-8 mb-2">Transform Your Home Buying Experience</h1>
+          <p className="text-lg text-gray-600 text-center mb-8 max-w-2xl">
+            See how we've revolutionized the traditional home buying process to eliminate stress and maximize satisfaction
+          </p>
+          <div className="flex flex-col md:flex-row gap-6 w-full max-w-4xl">
+            <div className="flex-1 bg-red-50 rounded-xl shadow p-8">
+              <span className="inline-block bg-red-100 text-red-600 px-3 py-1 rounded-full font-semibold mb-4">✖ Traditional Home Buying</span>
+              <h2 className="text-xl font-bold text-red-600 mb-2">Frustrating Pain Points</h2>
+              <p className="text-sm text-red-500 mb-6">The typical home buying experience is filled with stress and uncertainty</p>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2 bg-red-100 rounded-md p-3">
+                  <span>🔍</span> Endless property searches with no clear direction
+                </li>
+                <li className="flex items-center gap-2 bg-red-100 rounded-md p-3">
+                  <span>💸</span> Hidden costs and unexpected fees
+                </li>
+                <li className="flex items-center gap-2 bg-red-100 rounded-md p-3">
+                  <span>📞</span> Unreliable agents who disappear
+                </li>
+                <li className="flex items-center gap-2 bg-red-100 rounded-md p-3">
+                  <span>⚠️</span> Stressful negotiations and paperwork
+                </li>
+                <li className="flex items-center gap-2 bg-red-100 rounded-md p-3">
+                  <span>⏳</span> Wasted time on unsuitable properties
+                </li>
+              </ul>
+            </div>
+            <div className="flex-1 bg-green-50 rounded-xl shadow p-8">
+              <span className="inline-block bg-green-100 text-green-600 px-3 py-1 rounded-full font-semibold mb-4">✔ Our Solution</span>
+              <h2 className="text-xl font-bold text-green-600 mb-2">Stress-Free Experience</h2>
+              <p className="text-sm text-green-500 mb-6">We've reimagined home buying to be smooth, transparent, and enjoyable</p>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2 bg-green-100 rounded-md p-3">
+                  <span>✅</span> Curated property matches based on your needs
+                </li>
+                <li className="flex items-center gap-2 bg-green-100 rounded-md p-3">
+                  <span>🛡️</span> Transparent pricing with no hidden fees
+                </li>
+                <li className="flex items-center gap-2 bg-green-100 rounded-md p-3">
+                  <span>🧑‍💼</span> Dedicated expert support throughout
+                </li>
+                <li className="flex items-center gap-2 bg-green-100 rounded-md p-3">
+                  <span>📄</span> Streamlined process and documentation
+                </li>
+                <li className="flex items-center gap-2 bg-green-100 rounded-md p-3">
+                  <span>🏡</span> Pre-screened, quality properties only
+                </li>
+              </ul>
+              <button className="mt-6 w-full py-3 bg-green-600 text-white rounded-md font-semibold hover:bg-green-700 transition">
+                Book Site Visit
+              </button>
+              <p className="mt-4 text-green-600 text-center text-sm">
+                Start your stress-free home buying journey today
+              </p>
+            </div>
+          </div>
+        </div>
+      );
     }
-
-    setIsComparing(true);
-    setShowResults(false);
-
     try {
       // Call Gemini API for real comparison
       const result = await GeminiService.generateCardComparison(vendorCard, customerCard);
