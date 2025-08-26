@@ -38,56 +38,55 @@ export const AuthForm = ({ onAuthSuccess }: AuthFormProps) => {
   };
 
   return (
-    <div 
-      className="min-h-screen flex items-center justify-center p-4 relative"
-      style={{
-        backgroundImage: `linear-gradient(135deg, hsl(var(--primary) / 0.9), hsl(var(--secondary) / 0.8)), url(${heroImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
-      }}
-    >
-      <div className="w-full max-w-md space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-background via-card to-muted/30 flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      </div>
+      <div className="w-full max-w-md space-y-8 relative z-10">
         {/* Logo/Brand Section */}
-        <div className="text-center text-white mb-8">
-          <div className="flex justify-center mb-4">
-            <div className="bg-white/20 backdrop-blur-sm p-4 rounded-2xl">
-              <CreditCard className="h-8 w-8 text-white" />
+        <div className="text-center mb-8 animate-fade-in">
+          <div className="flex justify-center mb-6">
+            <div className="bg-primary/20 backdrop-blur-sm p-6 rounded-3xl border border-primary/30 shadow-card">
+              <CreditCard className="h-12 w-12 text-primary" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold mb-2">CardAssist Pro</h1>
-          <p className="text-white/80">Smart Credit Card Sales Assistant</p>
+          <h1 className="text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            CardAssist Pro
+          </h1>
+          <p className="text-muted-foreground text-lg font-medium">Smart Credit Card Sales Assistant</p>
         </div>
 
         {/* Features Preview */}
-        <div className="grid grid-cols-3 gap-4 mb-8">
-          <div className="text-center">
-            <div className="bg-white/10 backdrop-blur-sm p-3 rounded-xl mb-2">
-              <CreditCard className="h-5 w-5 text-white mx-auto" />
+        <div className="grid grid-cols-3 gap-4 mb-8 animate-fade-in delay-200">
+          <div className="text-center group">
+            <div className="bg-card/60 backdrop-blur-sm p-4 rounded-2xl mb-3 border border-border/50 transition-all duration-300 group-hover:scale-105 group-hover:shadow-card">
+              <CreditCard className="h-6 w-6 text-primary mx-auto" />
             </div>
-            <p className="text-xs text-white/80">Compare Cards</p>
+            <p className="text-sm text-muted-foreground font-medium">Compare Cards</p>
           </div>
-          <div className="text-center">
-            <div className="bg-white/10 backdrop-blur-sm p-3 rounded-xl mb-2">
-              <TrendingUp className="h-5 w-5 text-white mx-auto" />
+          <div className="text-center group">
+            <div className="bg-card/60 backdrop-blur-sm p-4 rounded-2xl mb-3 border border-border/50 transition-all duration-300 group-hover:scale-105 group-hover:shadow-card">
+              <TrendingUp className="h-6 w-6 text-secondary mx-auto" />
             </div>
-            <p className="text-xs text-white/80">AI Insights</p>
+            <p className="text-sm text-muted-foreground font-medium">AI Insights</p>
           </div>
-          <div className="text-center">
-            <div className="bg-white/10 backdrop-blur-sm p-3 rounded-xl mb-2">
-              <Shield className="h-5 w-5 text-white mx-auto" />
+          <div className="text-center group">
+            <div className="bg-card/60 backdrop-blur-sm p-4 rounded-2xl mb-3 border border-border/50 transition-all duration-300 group-hover:scale-105 group-hover:shadow-card">
+              <Shield className="h-6 w-6 text-accent mx-auto" />
             </div>
-            <p className="text-xs text-white/80">Sales Boost</p>
+            <p className="text-sm text-muted-foreground font-medium">Sales Boost</p>
           </div>
         </div>
 
         {/* Auth Form */}
-        <Card className="backdrop-blur-sm bg-white/95 shadow-card-hover border-0">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl">
+        <Card className="backdrop-blur-sm bg-card/80 shadow-card-hover border border-border/50 animate-fade-in delay-300">
+          <CardHeader className="text-center space-y-4 pb-8">
+            <CardTitle className="text-3xl font-bold text-card-foreground">
               {isLogin ? "Welcome Back" : "Get Started"}
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-lg text-muted-foreground">
               {isLogin 
                 ? "Sign in to your account to continue" 
                 : "Create your account to start comparing cards"
@@ -136,8 +135,7 @@ export const AuthForm = ({ onAuthSuccess }: AuthFormProps) => {
               </div>
               <Button 
                 type="submit" 
-                variant="primary"
-                className="w-full" 
+                className="w-full h-12 text-lg font-semibold bg-gradient-primary hover:scale-105 transition-all duration-300 shadow-card hover:shadow-card-hover" 
                 disabled={isLoading}
               >
                 {isLoading ? "Please wait..." : (isLogin ? "Sign In" : "Create Account")}

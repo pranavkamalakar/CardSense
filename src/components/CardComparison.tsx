@@ -6,11 +6,12 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, CreditCard, Copy, CheckCircle, TrendingUp, Gift, Shield } from "lucide-react";
+import { Loader2, CreditCard, Copy, CheckCircle, TrendingUp, Gift, Shield, LogOut } from "lucide-react";
 import { GeminiService } from "@/services/geminiService";
 
 interface CardComparisonProps {
   userEmail: string;
+  onLogout: () => void;
 }
 
 interface ComparisonResult {
@@ -60,7 +61,7 @@ const CUSTOMER_CARDS = [
   "BOB Premier Credit Card"
 ];
 
-export const CardComparison = ({ userEmail }: CardComparisonProps) => {
+export const CardComparison = ({ userEmail, onLogout }: CardComparisonProps) => {
   const [vendorCard, setVendorCard] = useState("");
   const [customerCard, setCustomerCard] = useState("");
   const [isComparing, setIsComparing] = useState(false);
@@ -158,61 +159,71 @@ export const CardComparison = ({ userEmail }: CardComparisonProps) => {
 
   if (comparisonResult) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-green-50 p-4">
-        <div className="max-w-7xl mx-auto space-y-8">
-          {/* Header */}
-          <div className={`text-center transition-all duration-700 ${showResults ? 'animate-fade-in' : 'opacity-0 -translate-y-8'}`}>
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-4">
-              Card Comparison Results
-            </h1>
-            <p className="text-xl text-gray-600 font-medium">AI-powered analysis and sales strategy</p>
+      <div className="min-h-screen bg-background p-4">
+        <div className="max-w-6xl mx-auto space-y-6">
+          {/* Header with Logout */}
+          <div className="flex justify-between items-center mb-6">
+            <div className={`text-center flex-1 transition-all duration-700 ${showResults ? 'animate-fade-in' : 'opacity-0 -translate-y-8'}`}>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
+                Card Comparison Results
+              </h1>
+              <p className="text-lg text-muted-foreground font-medium">AI-powered analysis and sales strategy</p>
+            </div>
+            <Button 
+              onClick={onLogout}
+              variant="outline"
+              size="sm"
+              className="flex items-center gap-2 hover:scale-105 transition-all duration-300"
+            >
+              <LogOut className="h-4 w-4" />
+              Logout
+            </Button>
           </div>
 
           {/* Comparison Cards */}
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-6">
             {/* Vendor Card */}
-            <div className={`transition-all duration-1000 delay-200 ${showResults ? 'animate-fade-in translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'} hover:scale-105 hover:shadow-2xl`}>
-              <Card className="h-full border-0 shadow-xl rounded-3xl overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200/50">
-                <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white relative overflow-hidden">
-                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <CardTitle className="flex items-center gap-3 text-2xl font-bold relative z-10">
-                    <CreditCard className="h-7 w-7" />
+            <div className={`transition-all duration-1000 delay-200 ${showResults ? 'animate-fade-in translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'} hover:scale-105 hover:shadow-card-hover`}>
+              <Card className="h-full shadow-card rounded-2xl overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20">
+                <CardHeader className="bg-gradient-primary text-primary-foreground relative overflow-hidden p-6">
+                  <CardTitle className="flex items-center gap-3 text-xl font-bold">
+                    <CreditCard className="h-6 w-6" />
                     Your Card (Vendor)
                   </CardTitle>
-                  <CardDescription className="text-blue-100 text-lg font-medium relative z-10">
+                  <CardDescription className="text-primary-foreground/80 text-base font-medium">
                     {comparisonResult.vendorCard.name}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="p-8 space-y-6">
+                <CardContent className="p-6 space-y-4">
                   <div>
-                    <h4 className="font-bold mb-4 flex items-center gap-2 text-xl text-blue-800">
-                      <Gift className="h-6 w-6 text-blue-600" />
+                    <h4 className="font-bold mb-3 flex items-center gap-2 text-lg text-card-foreground">
+                      <Gift className="h-5 w-5 text-primary" />
                       Features
                     </h4>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-2">
                       {comparisonResult.vendorCard.features.map((feature, idx) => (
-                        <Badge key={idx} className="px-4 py-2 text-sm font-semibold bg-blue-100 text-blue-800 border-blue-300 hover:bg-blue-200 transition-colors rounded-full">
+                        <Badge key={idx} className="px-3 py-1 text-xs font-semibold bg-primary/20 text-primary border-primary/30 hover:bg-primary/30 transition-colors rounded-full">
                           {feature}
                         </Badge>
                       ))}
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="bg-white/60 rounded-2xl p-4 space-y-2">
-                      <p className="font-semibold text-gray-600 text-sm uppercase tracking-wide">Annual Fee</p>
-                      <p className="font-bold text-xl text-blue-700">{comparisonResult.vendorCard.fees}</p>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-card/60 rounded-xl p-3 space-y-1 border border-border/50">
+                      <p className="font-semibold text-muted-foreground text-xs uppercase tracking-wide">Annual Fee</p>
+                      <p className="font-bold text-lg text-card-foreground">{comparisonResult.vendorCard.fees}</p>
                     </div>
-                    <div className="bg-white/60 rounded-2xl p-4 space-y-2">
-                      <p className="font-semibold text-gray-600 text-sm uppercase tracking-wide">Cashback</p>
-                      <p className="font-bold text-xl text-green-600">{comparisonResult.vendorCard.cashback}</p>
+                    <div className="bg-card/60 rounded-xl p-3 space-y-1 border border-border/50">
+                      <p className="font-semibold text-muted-foreground text-xs uppercase tracking-wide">Cashback</p>
+                      <p className="font-bold text-lg text-secondary">{comparisonResult.vendorCard.cashback}</p>
                     </div>
-                    <div className="bg-white/60 rounded-2xl p-4 space-y-2">
-                      <p className="font-semibold text-gray-600 text-sm uppercase tracking-wide">Rewards</p>
-                      <p className="font-bold text-xl text-blue-700">{comparisonResult.vendorCard.rewards}</p>
+                    <div className="bg-card/60 rounded-xl p-3 space-y-1 border border-border/50">
+                      <p className="font-semibold text-muted-foreground text-xs uppercase tracking-wide">Rewards</p>
+                      <p className="font-bold text-lg text-card-foreground">{comparisonResult.vendorCard.rewards}</p>
                     </div>
-                    <div className="bg-white/60 rounded-2xl p-4 space-y-2">
-                      <p className="font-semibold text-gray-600 text-sm uppercase tracking-wide">Credit Limit</p>
-                      <p className="font-bold text-xl text-blue-700">{comparisonResult.vendorCard.limits}</p>
+                    <div className="bg-card/60 rounded-xl p-3 space-y-1 border border-border/50">
+                      <p className="font-semibold text-muted-foreground text-xs uppercase tracking-wide">Credit Limit</p>
+                      <p className="font-bold text-lg text-card-foreground">{comparisonResult.vendorCard.limits}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -220,48 +231,47 @@ export const CardComparison = ({ userEmail }: CardComparisonProps) => {
             </div>
 
             {/* Customer Card */}
-            <div className={`transition-all duration-1000 delay-400 ${showResults ? 'animate-fade-in translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'} hover:scale-105 hover:shadow-2xl`}>
-              <Card className="h-full border-0 shadow-xl rounded-3xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 border-gray-200/50">
-                <CardHeader className="bg-gradient-to-r from-gray-600 to-gray-700 text-white relative overflow-hidden">
-                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <CardTitle className="flex items-center gap-3 text-2xl font-bold relative z-10">
-                    <CreditCard className="h-7 w-7" />
+            <div className={`transition-all duration-1000 delay-400 ${showResults ? 'animate-fade-in translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'} hover:scale-105 hover:shadow-card-hover`}>
+              <Card className="h-full shadow-card rounded-2xl overflow-hidden bg-gradient-to-br from-muted/30 to-muted/50 border border-muted/50">
+                <CardHeader className="bg-gradient-to-r from-muted to-muted-foreground/20 text-card-foreground relative overflow-hidden p-6">
+                  <CardTitle className="flex items-center gap-3 text-xl font-bold">
+                    <CreditCard className="h-6 w-6" />
                     Customer's Current Card
                   </CardTitle>
-                  <CardDescription className="text-gray-100 text-lg font-medium relative z-10">
+                  <CardDescription className="text-muted-foreground text-base font-medium">
                     {comparisonResult.customerCard.name}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="p-8 space-y-6">
+                <CardContent className="p-6 space-y-4">
                   <div>
-                    <h4 className="font-bold mb-4 flex items-center gap-2 text-xl text-gray-800">
-                      <Gift className="h-6 w-6 text-gray-600" />
+                    <h4 className="font-bold mb-3 flex items-center gap-2 text-lg text-card-foreground">
+                      <Gift className="h-5 w-5 text-muted-foreground" />
                       Features
                     </h4>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-2">
                       {comparisonResult.customerCard.features.map((feature, idx) => (
-                        <Badge key={idx} className="px-4 py-2 text-sm font-semibold bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200 transition-colors rounded-full">
+                        <Badge key={idx} className="px-3 py-1 text-xs font-semibold bg-muted/60 text-muted-foreground border-muted hover:bg-muted transition-colors rounded-full">
                           {feature}
                         </Badge>
                       ))}
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="bg-white/60 rounded-2xl p-4 space-y-2">
-                      <p className="font-semibold text-gray-600 text-sm uppercase tracking-wide">Annual Fee</p>
-                      <p className="font-bold text-xl text-gray-700">{comparisonResult.customerCard.fees}</p>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-card/60 rounded-xl p-3 space-y-1 border border-border/50">
+                      <p className="font-semibold text-muted-foreground text-xs uppercase tracking-wide">Annual Fee</p>
+                      <p className="font-bold text-lg text-card-foreground">{comparisonResult.customerCard.fees}</p>
                     </div>
-                    <div className="bg-white/60 rounded-2xl p-4 space-y-2">
-                      <p className="font-semibold text-gray-600 text-sm uppercase tracking-wide">Cashback</p>
-                      <p className="font-bold text-xl text-gray-700">{comparisonResult.customerCard.cashback}</p>
+                    <div className="bg-card/60 rounded-xl p-3 space-y-1 border border-border/50">
+                      <p className="font-semibold text-muted-foreground text-xs uppercase tracking-wide">Cashback</p>
+                      <p className="font-bold text-lg text-card-foreground">{comparisonResult.customerCard.cashback}</p>
                     </div>
-                    <div className="bg-white/60 rounded-2xl p-4 space-y-2">
-                      <p className="font-semibold text-gray-600 text-sm uppercase tracking-wide">Rewards</p>
-                      <p className="font-bold text-xl text-gray-700">{comparisonResult.customerCard.rewards}</p>
+                    <div className="bg-card/60 rounded-xl p-3 space-y-1 border border-border/50">
+                      <p className="font-semibold text-muted-foreground text-xs uppercase tracking-wide">Rewards</p>
+                      <p className="font-bold text-lg text-card-foreground">{comparisonResult.customerCard.rewards}</p>
                     </div>
-                    <div className="bg-white/60 rounded-2xl p-4 space-y-2">
-                      <p className="font-semibold text-gray-600 text-sm uppercase tracking-wide">Credit Limit</p>
-                      <p className="font-bold text-xl text-gray-700">{comparisonResult.customerCard.limits}</p>
+                    <div className="bg-card/60 rounded-xl p-3 space-y-1 border border-border/50">
+                      <p className="font-semibold text-muted-foreground text-xs uppercase tracking-wide">Credit Limit</p>
+                      <p className="font-bold text-lg text-card-foreground">{comparisonResult.customerCard.limits}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -271,41 +281,38 @@ export const CardComparison = ({ userEmail }: CardComparisonProps) => {
 
           {/* AI Sales Pitch */}
           <div className={`transition-all duration-1000 delay-600 ${showResults ? 'animate-fade-in translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
-            <Card className={`border-0 shadow-2xl rounded-3xl overflow-hidden bg-gradient-to-br from-green-50 to-green-100 border-green-200/50 ${isTyping ? 'animate-pulse' : ''} ${!isTyping && showResults ? 'shadow-green-200/50 shadow-2xl' : ''}`}>
-              <CardHeader className="bg-gradient-to-r from-green-600 to-green-700 text-white relative overflow-hidden">
-                <div className="absolute inset-0 bg-white/10 opacity-20">
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
-                </div>
-                <CardTitle className="flex items-center gap-3 text-2xl font-bold relative z-10">
-                  <TrendingUp className="h-7 w-7" />
+            <Card className={`shadow-card rounded-2xl overflow-hidden bg-gradient-to-br from-secondary/5 to-secondary/10 border border-secondary/20 ${isTyping ? 'animate-pulse' : ''} ${!isTyping && showResults ? 'shadow-card-hover' : ''}`}>
+              <CardHeader className="bg-gradient-success text-secondary-foreground relative overflow-hidden p-6">
+                <CardTitle className="flex items-center gap-3 text-xl font-bold">
+                  <TrendingUp className="h-6 w-6" />
                   AI-Generated Sales Pitch
                 </CardTitle>
-                <CardDescription className="text-green-100 text-lg font-medium relative z-10">
+                <CardDescription className="text-secondary-foreground/80 text-base font-medium">
                   Personalized conversation script to convince the customer
                 </CardDescription>
               </CardHeader>
-              <CardContent className="p-8">
-                <div className="bg-white/70 rounded-2xl p-8 mb-8 border-2 border-green-200/50 backdrop-blur-sm">
-                  <div ref={typewriterRef} className="whitespace-pre-wrap text-lg font-medium leading-relaxed text-gray-800 min-h-[120px]">
+              <CardContent className="p-6">
+                <div className="bg-card/70 rounded-xl p-6 mb-6 border border-border/50 backdrop-blur-sm">
+                  <div ref={typewriterRef} className="whitespace-pre-wrap text-base font-medium leading-relaxed text-card-foreground min-h-[100px]">
                     {!isTyping && comparisonResult.salesPitch}
                   </div>
                   {isTyping && (
-                    <div className="inline-block w-1 h-6 bg-green-600 animate-pulse ml-1 rounded-full"></div>
+                    <div className="inline-block w-1 h-5 bg-secondary animate-pulse ml-1 rounded-full"></div>
                   )}
                 </div>
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-3">
                   <Button 
                     onClick={copyPitchToClipboard} 
-                    className={`flex-1 py-4 px-8 rounded-2xl font-bold text-lg transition-all duration-300 ${copied ? 'bg-green-700 scale-110' : 'bg-green-600 hover:bg-green-700'} text-white hover:scale-105 hover:shadow-xl`}
+                    className={`flex-1 py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${copied ? 'bg-secondary/90 scale-105' : 'bg-secondary hover:bg-secondary/90'} text-secondary-foreground hover:scale-105 hover:shadow-card`}
                   >
                     {copied ? (
                       <>
-                        <CheckCircle className="h-6 w-6 mr-3" />
+                        <CheckCircle className="h-5 w-5 mr-2" />
                         Copied!
                       </>
                     ) : (
                       <>
-                        <Copy className="h-6 w-6 mr-3" />
+                        <Copy className="h-5 w-5 mr-2" />
                         Copy to Clipboard
                       </>
                     )}
@@ -313,7 +320,7 @@ export const CardComparison = ({ userEmail }: CardComparisonProps) => {
                   <Button 
                     onClick={resetComparison} 
                     variant="outline"
-                    className="py-4 px-8 rounded-2xl font-bold text-lg border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:scale-105 transition-all duration-300 hover:shadow-lg"
+                    className="py-3 px-6 rounded-xl font-semibold border border-border text-card-foreground hover:bg-muted hover:scale-105 transition-all duration-300 hover:shadow-card"
                   >
                     New Comparison
                   </Button>
@@ -327,43 +334,54 @@ export const CardComparison = ({ userEmail }: CardComparisonProps) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-green-50 p-4">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-6xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-6">
-            Card Comparison Tool
-          </h1>
-          <p className="text-2xl text-gray-600 mb-8 font-medium">Compare credit cards and get AI-powered sales insights</p>
-          <div className="flex items-center justify-center gap-3 text-lg text-gray-700 bg-white/70 backdrop-blur-sm rounded-full px-8 py-4 w-fit mx-auto shadow-lg border border-gray-200/50">
-            <Shield className="h-6 w-6 text-blue-600" />
-            <span className="font-semibold">Signed in as {userEmail}</span>
+    <div className="min-h-screen bg-background p-4">
+      <div className="max-w-3xl mx-auto">
+        {/* Header with Logout */}
+        <div className="flex justify-between items-center mb-8">
+          <div className="text-center flex-1 animate-fade-in">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-4">
+              Card Comparison Tool
+            </h1>
+            <p className="text-lg text-muted-foreground mb-6 font-medium">Compare credit cards and get AI-powered sales insights</p>
+            <div className="flex items-center justify-center gap-3 text-base text-muted-foreground bg-card/70 backdrop-blur-sm rounded-full px-6 py-3 w-fit mx-auto shadow-card border border-border/50">
+              <Shield className="h-5 w-5 text-primary" />
+              <span className="font-semibold">Signed in as {userEmail}</span>
+            </div>
           </div>
+          <Button 
+            onClick={onLogout}
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2 hover:scale-105 transition-all duration-300"
+          >
+            <LogOut className="h-4 w-4" />
+            Logout
+          </Button>
         </div>
 
         {/* Comparison Form */}
-        <Card className="shadow-2xl rounded-3xl border-0 overflow-hidden backdrop-blur-sm bg-white/80 animate-fade-in delay-200">
-          <CardHeader className="bg-gradient-to-r from-blue-600 to-green-600 text-white p-8">
-            <CardTitle className="flex items-center gap-4 text-3xl font-bold">
-              <CreditCard className="h-8 w-8" />
+        <Card className="shadow-card rounded-2xl border border-border/50 overflow-hidden backdrop-blur-sm bg-card/80 animate-fade-in delay-200">
+          <CardHeader className="bg-gradient-primary text-primary-foreground p-6">
+            <CardTitle className="flex items-center gap-3 text-2xl font-bold">
+              <CreditCard className="h-6 w-6" />
               Start Comparison
             </CardTitle>
-            <CardDescription className="text-blue-100 text-xl font-medium">
+            <CardDescription className="text-primary-foreground/80 text-base font-medium">
               Select the cards to compare and get personalized sales strategy
             </CardDescription>
           </CardHeader>
-          <CardContent className="p-8 space-y-8 bg-gradient-to-br from-white to-blue-50/30">
-            <div className="space-y-4">
-              <Label htmlFor="vendor-card" className="text-xl font-bold text-gray-800">
+          <CardContent className="p-6 space-y-6 bg-gradient-to-br from-card to-muted/20">
+            <div className="space-y-3">
+              <Label htmlFor="vendor-card" className="text-lg font-bold text-card-foreground">
                 Your Card (The one you're selling)
               </Label>
               <Select value={vendorCard} onValueChange={setVendorCard}>
-                <SelectTrigger className="h-16 text-lg rounded-2xl border-2 border-blue-200 hover:border-blue-400 transition-all duration-300 bg-white/70 backdrop-blur-sm shadow-lg">
+                <SelectTrigger className="h-12 text-base rounded-xl border border-border hover:border-primary transition-all duration-300 bg-card/70 backdrop-blur-sm shadow-card">
                   <SelectValue placeholder="Select your vendor card" />
                 </SelectTrigger>
-                <SelectContent className="rounded-2xl border-0 shadow-2xl bg-white/95 backdrop-blur-sm">
+                <SelectContent className="rounded-xl border border-border shadow-card bg-card/95 backdrop-blur-sm">
                   {VENDOR_CARDS.map((card) => (
-                    <SelectItem key={card} value={card} className="text-lg py-4 rounded-xl hover:bg-blue-50">
+                    <SelectItem key={card} value={card} className="text-base py-3 rounded-lg hover:bg-muted">
                       {card}
                     </SelectItem>
                   ))}
@@ -371,17 +389,17 @@ export const CardComparison = ({ userEmail }: CardComparisonProps) => {
               </Select>
             </div>
 
-            <div className="space-y-4">
-              <Label htmlFor="customer-card" className="text-xl font-bold text-gray-800">
+            <div className="space-y-3">
+              <Label htmlFor="customer-card" className="text-lg font-bold text-card-foreground">
                 Customer's Current Card
               </Label>
               <Select value={customerCard} onValueChange={setCustomerCard}>
-                <SelectTrigger className="h-16 text-lg rounded-2xl border-2 border-blue-200 hover:border-blue-400 transition-all duration-300 bg-white/70 backdrop-blur-sm shadow-lg">
+                <SelectTrigger className="h-12 text-base rounded-xl border border-border hover:border-primary transition-all duration-300 bg-card/70 backdrop-blur-sm shadow-card">
                   <SelectValue placeholder="Select customer's current card" />
                 </SelectTrigger>
-                <SelectContent className="rounded-2xl border-0 shadow-2xl bg-white/95 backdrop-blur-sm">
+                <SelectContent className="rounded-xl border border-border shadow-card bg-card/95 backdrop-blur-sm">
                   {CUSTOMER_CARDS.map((card) => (
-                    <SelectItem key={card} value={card} className="text-lg py-4 rounded-xl hover:bg-gray-50">
+                    <SelectItem key={card} value={card} className="text-base py-3 rounded-lg hover:bg-muted">
                       {card}
                     </SelectItem>
                   ))}
@@ -392,16 +410,16 @@ export const CardComparison = ({ userEmail }: CardComparisonProps) => {
             <Button 
               onClick={generateComparison}
               disabled={isComparing || !vendorCard || !customerCard}
-              className="w-full h-16 text-xl font-bold rounded-2xl bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              className="w-full h-12 text-lg font-bold rounded-xl bg-gradient-primary hover:scale-105 transition-all duration-300 shadow-card hover:shadow-card-hover disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               {isComparing ? (
                 <>
-                  <Loader2 className="h-7 w-7 mr-4 animate-spin" />
+                  <Loader2 className="h-5 w-5 mr-3 animate-spin" />
                   Analyzing with AI...
                 </>
               ) : (
                 <>
-                  <TrendingUp className="h-7 w-7 mr-4" />
+                  <TrendingUp className="h-5 w-5 mr-3" />
                   Compare Cards & Generate Pitch
                 </>
               )}

@@ -22,7 +22,7 @@ const Index = () => {
     return <AuthForm onAuthSuccess={handleAuthSuccess} />;
   }
 
-  return <CardComparison userEmail={user.email} />;
+  return <CardComparison userEmail={user.email} onLogout={handleLogout} />;
 };
 
 export default Index;
