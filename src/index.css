@@ -8,65 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Financial Services Design System - Dark Theme */
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
-
-    --card: 224 71% 6%;
-    --card-foreground: 213 31% 91%;
-
-    --popover: 224 71% 6%;
-    --popover-foreground: 213 31% 91%;
-
-    /* Primary - Professional Blue */
-    --primary: 217 91% 60%;
-    --primary-foreground: 224 71% 4%;
-    --primary-glow: 217 91% 70%;
-    
-    /* Secondary - Trust Green */
-    --secondary: 142 76% 36%;
-    --secondary-foreground: 213 31% 91%;
-
-    /* Accent - Gold for premium features */
-    --accent: 45 93% 47%;
-    --accent-foreground: 224 71% 4%;
-
-    --muted: 223 47% 11%;
-    --muted-foreground: 215.4 16.3% 56.9%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 213 31% 91%;
-
-    --border: 216 34% 17%;
-    --input: 216 34% 17%;
-    --ring: 217 91% 60%;
-
-    --radius: 0.75rem;
-
-    /* Financial gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-success: linear-gradient(135deg, hsl(var(--secondary)), hsl(142 76% 46%));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
-    
-    /* Shadows for depth */
-    --shadow-card: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -1px hsl(0 0% 0% / 0.2);
-    --shadow-card-hover: 0 10px 15px -3px hsl(0 0% 0% / 0.3), 0 4px 6px -2px hsl(0 0% 0% / 0.2);
-    
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    --sidebar-background: 224 71% 6%;
-    --sidebar-foreground: 213 31% 91%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 224 71% 4%;
-    --sidebar-accent: 223 47% 11%;
-    --sidebar-accent-foreground: 213 31% 91%;
-    --sidebar-border: 216 34% 17%;
-    --sidebar-ring: 217 91% 60%;
-  }
-
-  .light {
-    /* Light theme overrides for users who prefer light mode */
+    /* Financial Services Design System - Light Theme (default) */
     --background: 240 10% 98%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -75,13 +17,36 @@ All colors MUST be HSL.
     --popover-foreground: 240 10% 3.9%;
     --primary: 214 84% 56%;
     --primary-foreground: 0 0% 98%;
+    --primary-glow: 217 91% 70%;
     --secondary: 142 76% 36%;
     --secondary-foreground: 0 0% 98%;
+    --accent: 45 93% 47%;
+    --accent-foreground: 224 71% 4%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 213 31% 91%;
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 214 84% 56%;
+    --radius: 0.75rem;
+    /* Financial gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-success: linear-gradient(135deg, hsl(var(--secondary)), hsl(142 76% 46%));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    /* Shadows for depth */
+    --shadow-card: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.05);
+    --shadow-card-hover: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -2px hsl(0 0% 0% / 0.05);
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 240 10% 3.9%;
+    --sidebar-primary: 214 84% 56%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 3.8% 46.1%;
+    --sidebar-border: 240 5.9% 90%;
+    --sidebar-ring: 214 84% 56%;
   }
 }
 
