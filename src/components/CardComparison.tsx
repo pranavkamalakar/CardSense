@@ -214,21 +214,21 @@ export const CardComparison = ({ userEmail, onLogout }: CardComparisonProps) => 
 
   if (comparisonResult) {
     return (
-      <div className="min-h-screen bg-background p-4">
+      <div className="min-h-screen bg-slate-900 p-4">
         <div className="max-w-6xl mx-auto space-y-6">
           {/* Header with Logout */}
           <div className="flex justify-between items-center mb-6">
             <div className={`text-center flex-1 transition-all duration-700 ${showResults ? 'animate-fade-in' : 'opacity-0 -translate-y-8'}`}>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
+              <h1 className="text-4xl font-bold text-white mb-2">
                 Card Comparison Results
               </h1>
-              <p className="text-lg text-muted-foreground font-medium">AI-powered analysis and sales strategy</p>
+              <p className="text-lg text-slate-300 font-medium">AI-powered analysis and sales strategy</p>
             </div>
             <Button 
               onClick={onLogout}
               variant="outline"
               size="sm"
-              className="flex items-center gap-2 hover:scale-105 transition-all duration-300"
+              className="flex items-center gap-2 hover:scale-105 transition-all duration-300 border-slate-600 text-slate-300 hover:bg-slate-700 hover:text-white"
             >
               <LogOut className="h-4 w-4" />
               Logout
@@ -239,20 +239,20 @@ export const CardComparison = ({ userEmail, onLogout }: CardComparisonProps) => 
           <div className="grid lg:grid-cols-2 gap-6">
             {/* Vendor Card */}
             <div className={`transition-all duration-1000 delay-200 ${showResults ? 'animate-fade-in translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'} hover:scale-105 hover:shadow-card-hover`}>
-              <Card className="h-full shadow-card rounded-2xl overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20">
-                <CardHeader className="bg-gradient-primary text-primary-foreground relative overflow-hidden p-6">
+              <Card className="h-full shadow-xl rounded-2xl overflow-hidden bg-slate-800/90 border border-blue-500/30">
+                <CardHeader className="bg-blue-600 text-white relative overflow-hidden p-6">
                   <CardTitle className="flex items-center gap-3 text-xl font-bold">
                     <CreditCard className="h-6 w-6" />
                     Your Card (Vendor)
                   </CardTitle>
-                  <CardDescription className="text-primary-foreground/80 text-base font-medium">
+                  <CardDescription className="text-blue-100 text-base font-medium">
                     {comparisonResult.vendorCard.name}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-6 space-y-4">
                   <div>
-                    <h4 className="font-bold mb-3 flex items-center gap-2 text-lg text-card-foreground">
-                      <Gift className="h-5 w-5 text-primary" />
+                    <h4 className="font-bold mb-3 flex items-center gap-2 text-lg text-white">
+                      <Gift className="h-5 w-5 text-blue-400" />
                       Features
                     </h4>
                     <div className="flex flex-wrap gap-2">
@@ -389,17 +389,17 @@ export const CardComparison = ({ userEmail, onLogout }: CardComparisonProps) => 
   }
 
   return (
-    <div className="min-h-screen bg-background p-4">
+    <div className="min-h-screen bg-slate-900 p-4">
       <div className="max-w-3xl mx-auto">
         {/* Header with Logout */}
         <div className="flex justify-between items-center mb-8">
           <div className="text-center flex-1 animate-fade-in">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-4">
+            <h1 className="text-4xl font-bold text-white mb-4">
               Card Comparison Tool
             </h1>
-            <p className="text-lg text-muted-foreground mb-6 font-medium">Compare credit cards and get AI-powered sales insights</p>
-            <div className="flex items-center justify-center gap-3 text-base text-muted-foreground bg-card/70 backdrop-blur-sm rounded-full px-6 py-3 w-fit mx-auto shadow-card border border-border/50">
-              <Shield className="h-5 w-5 text-primary" />
+            <p className="text-lg text-slate-300 mb-6 font-medium">Compare credit cards and get AI-powered sales insights</p>
+            <div className="flex items-center justify-center gap-3 text-base text-slate-300 bg-slate-800/70 backdrop-blur-sm rounded-full px-6 py-3 w-fit mx-auto shadow-xl border border-slate-600">
+              <Shield className="h-5 w-5 text-blue-400" />
               <span className="font-semibold">Signed in as {userEmail}</span>
             </div>
           </div>
@@ -407,7 +407,7 @@ export const CardComparison = ({ userEmail, onLogout }: CardComparisonProps) => 
             onClick={onLogout}
             variant="outline"
             size="sm"
-            className="flex items-center gap-2 hover:scale-105 transition-all duration-300"
+            className="flex items-center gap-2 hover:scale-105 transition-all duration-300 border-slate-600 text-slate-300 hover:bg-slate-700 hover:text-white"
           >
             <LogOut className="h-4 w-4" />
             Logout
@@ -415,28 +415,28 @@ export const CardComparison = ({ userEmail, onLogout }: CardComparisonProps) => 
         </div>
 
         {/* Comparison Form */}
-        <Card className="shadow-card rounded-2xl border border-border/50 overflow-hidden backdrop-blur-sm bg-card/80 animate-fade-in delay-200">
-          <CardHeader className="bg-gradient-primary text-primary-foreground p-6">
+        <Card className="shadow-xl rounded-2xl border border-slate-600 overflow-hidden backdrop-blur-sm bg-slate-800/90 animate-fade-in delay-200">
+          <CardHeader className="bg-blue-600 text-white p-6">
             <CardTitle className="flex items-center gap-3 text-2xl font-bold">
               <CreditCard className="h-6 w-6" />
               Start Comparison
             </CardTitle>
-            <CardDescription className="text-primary-foreground/80 text-base font-medium">
+            <CardDescription className="text-blue-100 text-base font-medium">
               Select the cards to compare and get personalized sales strategy
             </CardDescription>
           </CardHeader>
-          <CardContent className="p-6 space-y-6 bg-gradient-to-br from-card to-muted/20">
+          <CardContent className="p-6 space-y-6 bg-slate-800">,
             <div className="space-y-3">
-              <Label htmlFor="vendor-card" className="text-lg font-bold text-card-foreground">
+              <Label htmlFor="vendor-card" className="text-lg font-bold text-white">
                 Your Card (The one you're selling)
               </Label>
               <Select value={vendorCard} onValueChange={setVendorCard}>
-                <SelectTrigger className="h-12 text-base rounded-xl border border-border hover:border-primary transition-all duration-300 bg-card/70 backdrop-blur-sm shadow-card">
+                <SelectTrigger className="h-12 text-base rounded-xl border border-slate-600 hover:border-blue-400 transition-all duration-300 bg-slate-700/70 backdrop-blur-sm shadow-xl text-white">
                   <SelectValue placeholder="Select your vendor card" />
                 </SelectTrigger>
-                <SelectContent className="rounded-xl border border-border shadow-card bg-card/95 backdrop-blur-sm">
+                <SelectContent className="rounded-xl border border-slate-600 shadow-xl bg-slate-800 backdrop-blur-sm">
                   {VENDOR_CARDS.map((card) => (
-                    <SelectItem key={card} value={card} className="text-base py-3 rounded-lg hover:bg-muted">
+                    <SelectItem key={card} value={card} className="text-base py-3 rounded-lg hover:bg-slate-700 text-white">
                       {card}
                     </SelectItem>
                   ))}
@@ -445,16 +445,16 @@ export const CardComparison = ({ userEmail, onLogout }: CardComparisonProps) => 
             </div>
 
             <div className="space-y-3">
-              <Label htmlFor="customer-card" className="text-lg font-bold text-card-foreground">
+              <Label htmlFor="customer-card" className="text-lg font-bold text-white">
                 Customer's Current Card
               </Label>
               <Select value={customerCard} onValueChange={setCustomerCard}>
-                <SelectTrigger className="h-12 text-base rounded-xl border border-border hover:border-primary transition-all duration-300 bg-card/70 backdrop-blur-sm shadow-card">
+                <SelectTrigger className="h-12 text-base rounded-xl border border-slate-600 hover:border-blue-400 transition-all duration-300 bg-slate-700/70 backdrop-blur-sm shadow-xl text-white">
                   <SelectValue placeholder="Select customer's current card" />
                 </SelectTrigger>
-                <SelectContent className="rounded-xl border border-border shadow-card bg-card/95 backdrop-blur-sm">
+                <SelectContent className="rounded-xl border border-slate-600 shadow-xl bg-slate-800 backdrop-blur-sm">
                   {CUSTOMER_CARDS.map((card) => (
-                    <SelectItem key={card} value={card} className="text-base py-3 rounded-lg hover:bg-muted">
+                    <SelectItem key={card} value={card} className="text-base py-3 rounded-lg hover:bg-slate-700 text-white">
                       {card}
                     </SelectItem>
                   ))}
@@ -465,7 +465,7 @@ export const CardComparison = ({ userEmail, onLogout }: CardComparisonProps) => 
             <Button 
               onClick={generateComparison}
               disabled={isComparing || !vendorCard || !customerCard}
-              className="w-full h-12 text-lg font-bold rounded-xl bg-gradient-primary hover:scale-105 transition-all duration-300 shadow-card hover:shadow-card-hover disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              className="w-full h-12 text-lg font-bold rounded-xl bg-blue-600 hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-xl text-white disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               {isComparing ? (
                 <>
