@@ -9,6 +9,10 @@ import { useToast } from "@/hooks/use-toast";
 import { Loader2, CreditCard, Copy, CheckCircle, TrendingUp, Gift, Shield, LogOut } from "lucide-react";
 import { GeminiService } from "@/services/geminiService";
 
+interface CardComparisonProps {
+  userEmail: string;
+  onLogout: () => void;
+}
 
 interface ComparisonResult {
   vendorCard: {
@@ -57,7 +61,7 @@ const CUSTOMER_CARDS = [
   "BOB Premier Credit Card"
 ];
 
-const CardComparison = () => {
+export const CardComparison = ({ userEmail, onLogout }: CardComparisonProps) => {
   const [vendorCard, setVendorCard] = useState("");
   const [customerCard, setCustomerCard] = useState("");
   const [isComparing, setIsComparing] = useState(false);
@@ -221,7 +225,7 @@ const CardComparison = () => {
               <p className="text-lg text-muted-foreground font-medium">AI-powered analysis and sales strategy</p>
             </div>
             <Button 
-              // Removed onClick={onLogout}
+              onClick={onLogout}
               variant="outline"
               size="sm"
               className="flex items-center gap-2 hover:scale-105 transition-all duration-300"
@@ -396,11 +400,11 @@ const CardComparison = () => {
             <p className="text-lg text-muted-foreground mb-6 font-medium">Compare credit cards and get AI-powered sales insights</p>
             <div className="flex items-center justify-center gap-3 text-base text-muted-foreground bg-card/70 backdrop-blur-sm rounded-full px-6 py-3 w-fit mx-auto shadow-card border border-border/50">
               <Shield className="h-5 w-5 text-primary" />
-              {/* <span className="font-semibold">Signed in as {userEmail}</span> */}
+              <span className="font-semibold">Signed in as {userEmail}</span>
             </div>
           </div>
           <Button 
-            // Removed onClick={onLogout}
+            onClick={onLogout}
             variant="outline"
             size="sm"
             className="flex items-center gap-2 hover:scale-105 transition-all duration-300"
@@ -482,4 +486,3 @@ const CardComparison = () => {
   );
 };
 
-export default CardComparison;

@@ -1,18 +1,30 @@
 import { useState } from "react";
 import { AuthForm } from "@/components/AuthForm";
-// import { CardComparison } from "@/components/CardComparison";
+import { CardComparison } from "@/components/CardComparison";
 
 interface User {
   email: string;
   name: string;
 }
 
-import CardComparison from "../components/CardComparison";
-
 const Index = () => {
+  const [user, setUser] = useState<User | null>(null);
+
+  const handleAuthSuccess = (userData: User) => {
+    setUser(userData);
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+  };
+
+  if (!user) {
+    return <AuthForm onAuthSuccess={handleAuthSuccess} />;
+  }
+
   return (
     <div>
-      <CardComparison />
+      <CardComparison userEmail={user.email} onLogout={handleLogout} />
     </div>
   );
 };
