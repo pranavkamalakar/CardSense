@@ -54,7 +54,7 @@ export const AuthForm = ({ onAuthSuccess }: AuthFormProps) => {
             </div>
           </div>
           <h1 className="text-4xl font-bold mb-3 text-foreground">
-            CardAssist Pro
+            CardSense
           </h1>
           <p className="text-muted-foreground text-lg font-medium">Smart Credit Card Sales Assistant</p>
         </div>
