@@ -38,56 +38,56 @@ export const AuthForm = ({ onAuthSuccess }: AuthFormProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
       <div className="w-full max-w-md space-y-8 relative z-10">
         {/* Logo/Brand Section */}
         <div className="text-center mb-8 animate-fade-in">
           <div className="flex justify-center mb-6">
-            <div className="bg-slate-800/80 backdrop-blur-sm p-6 rounded-3xl border border-slate-600 shadow-xl">
-              <CreditCard className="h-12 w-12 text-blue-400" />
+            <div className="bg-card/80 backdrop-blur-sm p-6 rounded-3xl border border-border shadow-xl">
+              <CreditCard className="h-12 w-12 text-primary" />
             </div>
           </div>
-          <h1 className="text-4xl font-bold mb-3 text-white">
+          <h1 className="text-4xl font-bold mb-3 text-foreground">
             CardAssist Pro
           </h1>
-          <p className="text-slate-400 text-lg font-medium">Smart Credit Card Sales Assistant</p>
+          <p className="text-muted-foreground text-lg font-medium">Smart Credit Card Sales Assistant</p>
         </div>
 
         {/* Features Preview */}
         <div className="grid grid-cols-3 gap-4 mb-8 animate-fade-in delay-200">
           <div className="text-center group">
-            <div className="bg-slate-800/80 backdrop-blur-sm p-4 rounded-2xl mb-3 border border-slate-600 transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
-              <CreditCard className="h-6 w-6 text-blue-400 mx-auto" />
+            <div className="bg-card/80 backdrop-blur-sm p-4 rounded-2xl mb-3 border border-border transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+              <CreditCard className="h-6 w-6 text-primary mx-auto" />
             </div>
-            <p className="text-sm text-slate-300 font-medium">Compare Cards</p>
+            <p className="text-sm text-card-foreground font-medium">Compare Cards</p>
           </div>
           <div className="text-center group">
-            <div className="bg-slate-800/80 backdrop-blur-sm p-4 rounded-2xl mb-3 border border-slate-600 transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
-              <TrendingUp className="h-6 w-6 text-green-400 mx-auto" />
+            <div className="bg-card/80 backdrop-blur-sm p-4 rounded-2xl mb-3 border border-border transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+              <TrendingUp className="h-6 w-6 text-secondary mx-auto" />
             </div>
-            <p className="text-sm text-slate-300 font-medium">AI Insights</p>
+            <p className="text-sm text-card-foreground font-medium">AI Insights</p>
           </div>
           <div className="text-center group">
-            <div className="bg-slate-800/80 backdrop-blur-sm p-4 rounded-2xl mb-3 border border-slate-600 transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
-              <Shield className="h-6 w-6 text-purple-400 mx-auto" />
+            <div className="bg-card/80 backdrop-blur-sm p-4 rounded-2xl mb-3 border border-border transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+              <Shield className="h-6 w-6 text-accent mx-auto" />
             </div>
-            <p className="text-sm text-slate-300 font-medium">Sales Boost</p>
+            <p className="text-sm text-card-foreground font-medium">Sales Boost</p>
           </div>
         </div>
 
         {/* Auth Form */}
-        <Card className="backdrop-blur-sm bg-slate-800/95 shadow-2xl border border-slate-600 animate-fade-in delay-300">
+        <Card className="backdrop-blur-sm bg-card/95 shadow-2xl border border-border animate-fade-in delay-300">
           <CardHeader className="text-center space-y-4 pb-8">
-            <CardTitle className="text-3xl font-bold text-white">
+            <CardTitle className="text-3xl font-bold text-card-foreground">
               {isLogin ? "Welcome Back" : "Get Started"}
             </CardTitle>
-            <CardDescription className="text-lg text-slate-400">
+            <CardDescription className="text-lg text-muted-foreground">
               {isLogin 
                 ? "Sign in to your account to continue" 
                 : "Create your account to start comparing cards"
@@ -136,7 +136,7 @@ export const AuthForm = ({ onAuthSuccess }: AuthFormProps) => {
               </div>
               <Button 
                 type="submit" 
-                className="w-full h-12 text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white hover:scale-105 transition-all duration-300 shadow-lg" 
+                className="w-full h-12 text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground hover:scale-105 transition-all duration-300 shadow-lg" 
                 disabled={isLoading}
               >
                 {isLoading ? "Please wait..." : (isLogin ? "Sign In" : "Create Account")}
@@ -146,7 +146,7 @@ export const AuthForm = ({ onAuthSuccess }: AuthFormProps) => {
               <button
                 type="button"
                 onClick={() => setIsLogin(!isLogin)}
-                className="text-sm text-blue-400 hover:text-blue-300 hover:underline transition-colors"
+                className="text-sm text-primary hover:text-primary/80 hover:underline transition-colors"
               >
                 {isLogin 
                   ? "Don't have an account? Sign up" 
