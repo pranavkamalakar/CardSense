@@ -61,7 +61,7 @@ Please provide the response in this exact JSON format:
     "rewards": "Reward points details",
     "limits": "Credit limit range"
   },
-  "salesPitch": "A detailed, persuasive sales script in simple English that a vendor can use to convince the customer. Include specific benefits, savings calculations, and compelling reasons to switch. Make it conversational and easy to deliver."
+  "salesPitch": "A detailed, persuasive sales script in simple plain text (no markdown, no bold, no special formatting) that a vendor can use to convince the customer. Include specific benefits, savings calculations, and compelling reasons to switch. Make it conversational and easy to deliver."
 }
 
 Ensure all details are accurate and based on current credit card offerings in India.
@@ -137,13 +137,13 @@ Ensure all details are accurate and based on current credit card offerings in In
         },
         salesPitch: `Hi! I understand you currently use the ${customerCard}. It's a good card, but let me show you how ${vendorCard} can significantly improve your financial benefits. 
 
-**Key Advantages:**
-• **Higher Cashback**: Get 2-5% cashback vs your current 1-2%
-• **Better Rewards**: Earn double reward points on every purchase
-• **Premium Benefits**: Access to exclusive airport lounges and concierge services
-• **Higher Credit Limit**: Get up to ₹15 lakhs vs your current ₹8 lakhs limit
+Key Advantages:
+• Higher Cashback: Get 2-5% cashback vs your current 1-2%
+• Better Rewards: Earn double reward points on every purchase
+• Premium Benefits: Access to exclusive airport lounges and concierge services
+• Higher Credit Limit: Get up to ₹15 lakhs vs your current ₹8 lakhs limit
 
-**Real Example**: If you spend ₹50,000 monthly, you'll earn ₹12,000 more in cashback annually with ${vendorCard} compared to ${customerCard}.
+Real Example: If you spend ₹50,000 monthly, you'll earn ₹12,000 more in cashback annually with ${vendorCard} compared to ${customerCard}.
 
 The annual fee difference of ₹2,500 pays for itself in just 2 months with the enhanced benefits. Would you like me to help you apply today?`
       };
