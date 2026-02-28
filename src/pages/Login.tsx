@@ -73,6 +73,7 @@ export default function Login() {
           </div>
         </div>
       </div>
+      <p className="text-center text-sm text-muted-foreground py-4">Made by Pranav Kamalakar</p>
     </div>
   );
 }
